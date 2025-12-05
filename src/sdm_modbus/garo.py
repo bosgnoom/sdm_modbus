@@ -1,5 +1,6 @@
 from sdm_modbus import meter
-from pymodbus.constants import Endian
+#from pymodbus.constants import Endian
+from .endian import Endian
 
 
 class GARO(meter.Meter):

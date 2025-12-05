@@ -155,6 +155,7 @@ class SDM120(SDM):
         super().__init__(*args, **kwargs)
 
         self.registers = {
+            # "item": address, length, rtype, dtype, vtype, label, fmt, batch, sf
             "voltage": (0x0000, 2, meter.registerType.INPUT, meter.registerDataType.FLOAT32, float, "Voltage", "V", 1, 1),
             "current": (0x0006, 2, meter.registerType.INPUT, meter.registerDataType.FLOAT32, float, "Current", "A", 1, 1),
             "power_active": (0x000c, 2, meter.registerType.INPUT, meter.registerDataType.FLOAT32, float, "Power (Active)", "W", 1, 1),

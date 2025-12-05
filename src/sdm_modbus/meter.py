@@ -2,7 +2,7 @@ import enum
 import importlib
 import time
 
-from pymodbus.constants import Endian
+from .endian import Endian
 from pymodbus.client import ModbusTcpClient
 from pymodbus.client import ModbusUdpClient
 from pymodbus.client import ModbusSerialClient
@@ -130,7 +130,7 @@ class Meter:
 
                 self.mode = connectionType.RTU
                 self.client = ModbusSerialClient(
-                    method="rtu",
+                    # method="rtu",
                     port=self.device,
                     stopbits=self.stopbits,
                     parity=self.parity,
@@ -183,7 +183,7 @@ class Meter:
                 time.sleep(0.1)
                 continue
 
-            result = self.client.read_input_registers(address=address, count=length, slave=self.unit)
+            result = self.client.read_input_registers(address=address, count=length, device_id=self.unit)
 
             if not isinstance(result, ReadInputRegistersResponse):
                 continue
@@ -201,7 +201,7 @@ class Meter:
                 time.sleep(0.1)
                 continue
 
-            result = self.client.read_holding_registers(address=address, count=length, slave=self.unit)
+            result = self.client.read_holding_registers(address=address, count=length, device_id=self.unit)
 
             if not isinstance(result, ReadHoldingRegistersResponse):
                 continue
